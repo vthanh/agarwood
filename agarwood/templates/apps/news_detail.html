@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block meta_extend %}
+    {{ meta }}
+{% endblock %}
+
+{% block content %}
+<!-- Start Top Search -->
+<div class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>News Detail</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/news">News</a></li>
+                    <li class="breadcrumb-item active">News Detail</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Detail  -->
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-9">
+                <div class="single-product-details">
+                    <h2>{{news.title}}</h2>
+                    <div class="single-product-details">
+                        {{news.content|safe}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-3">
+                <div class="product-categori">
+                    <div class="search-product">
+                        <form action="#">
+                            <input class="form-control" placeholder="Search here..." type="text">
+                            <button type="submit"> <i class="fa fa-search"></i> </button>
+                        </form>
+                    </div>
+                    <div class="filter-sidebar-left">
+                        <div class="title-left">
+                            <h3>Categories</h3>
+                        </div>
+                        <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                            {% for news_category in news_category_list %}
+                                <a href="/news?news_category={{news_category.name}}" class="list-group-item list-group-item-action">{{news_category.name}}<small class="text-muted">(150) </small></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="row my-5">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Last News</h1>
+                </div>
+                <div class="featured-products-box owl-carousel owl-theme">
+                    {% for news in news_list %}
+                        <div class="item">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <img src="/media/{{news.cover}}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/news/{{news.id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="/news/{{news.id}}" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                            <li><a href="/news/{{news.id}}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        <a class="cart" href="/news/{{news.id}}">View Detail</a>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4><a href="/news/{{news.id}}">{{news.title}}</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Cart -->
+{% endblock %}

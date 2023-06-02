@@ -1,0 +1,87 @@
+{% extends "./index.html" %}
+
+{% load staticfiles i18n %}
+
+{% block content_account %}
+    <h4 class="m-y-2">Your Favorites ({{ number_favorites }})</h4>
+    <div class="row">
+        <div class="col-lg-8 pull-lg-8 text-xs-center">
+            <form method="post" action="{% url 'profile' %}">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">{% trans 'First name' %}</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text"
+                               value="{{ user_form.first_name.value }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">{% trans 'Last name' %}</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text"
+                               value="{{ user_form.last_name.value }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">{% trans 'Email' %}</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="email" value="{{ user_form.email.value }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">{% trans 'Address' %}</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" value="{{ profile_form.street.value }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-6">
+                        <input class="form-control" type="text" value="{{ profile_form.city.value }}">
+                    </div>
+                    <div class="col-lg-3">
+                        <input class="form-control" type="text" value="{{ profile_form.country.value }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">{% trans 'Phone' %}</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text"
+                               value={{ user_form.phone.value }}>
+                    </div>
+                </div>
+{#                                    <div class="form-group row">#}
+{#                                        <label class="col-lg-3 col-form-label form-control-label">{% trans 'Password' %}</label>#}
+{#                                        <div class="col-lg-9">#}
+{#                                            <input class="form-control" type="password" value="{{ user_form.password.value }}">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="form-group row">#}
+{#                                        <label class="col-lg-3 col-form-label form-control-label">{% trans 'Confirm password' %}</label>#}
+{#                                        <div class="col-lg-9">#}
+{#                                            <input class="form-control" type="password" value="{{ user_form.password.value }}">#}
+{#                                        </div>#}
+{#                                    </div>#}
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                        <input type="reset" class="btn btn-secondary" value="Reset">
+                        <input type="submit" class="btn btn-primary" value="Save Updates">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 pull-lg-4 text-xs-center">
+            {% if profile_form.photo %}
+                <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar">
+            {% else %}
+                <img src="{{ profile_form.photo }}" class="m-x-auto img-fluid img-circle" alt="avatar">
+            {% endif %}
+            <h6 class="m-t-2">{% trans 'Upload a different photo' %}</h6>
+            <label class="custom-file">
+                <input type="file" id="file" class="custom-file-input">
+                <span class="custom-file-control">{% trans 'Choose file' %}</span>
+            </label>
+        </div>
+    </div>
+{% endblock content_account %}

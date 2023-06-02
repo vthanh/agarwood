@@ -1,0 +1,101 @@
+{% extends "./index.html" %}
+
+{% load staticfiles i18n %}
+
+{% block content_account %}
+    <div class="row">
+        <div class="col-sm-12"><h1>Account Settings</h1></div>
+    </div>
+    <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="greenbox">
+            <div class="title">
+            </div>
+            <div class="cont">
+                <div class="top">                    
+                    <div class="upload">
+                        {% if profile_form.instance.avatar_user %}
+                            <img src="{{ profile_form.instance.avatar_user.url }}" class="avatar img-circle img-thumbnail rounded-circle"
+                                    id="avatar_image" alt="avatar">
+                        {% else %}
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                    class="avatar img-circle img-thumbnail rounded-circle" alt="avatar" id="avatar_image">
+                        {% endif %}
+                    </div>
+                    <div class="tools">                    
+                        <input type="file" class="text-center center-block file-upload" id="avatar_user" name="avatar_user">
+                        <input id="remove_avatar" class="btn btn-primary" type="button" value="Remove" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="formcontent">
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="first_name" class="col-form-label form-control-label">{% trans 'First Name *' %}</label>
+                            <input type="text" class="form-control" name="first_name" id="first_name"
+                                    placeholder="first name" title="enter your first name if any."
+                                    value="{{ user_form.first_name.value }}" required>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="last_name"
+                                    class="col-form-label form-control-label">{% trans 'Last Name*' %}</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name"
+                                    placeholder="last name" title="enter your last name if any."
+                                    value="{{ user_form.last_name.value }}" required>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="phone" class="col-form-label form-control-label">{% trans 'Phone Number' %}</label>
+                            <input type="text" class="form-control" name="phone" id="phone"
+                                    placeholder="enter phone" title="enter your phone number if any."
+                                    value="{{ profile_form.phone.value }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="email" class="ccol-form-label form-control-label">{% trans 'Email Address *' %}</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="you@email.com" title="enter your email."
+                                    value="{{ user_form.email.value }}" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                            <li class="{{ message.tags }}">{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-12">
+                                <br>
+                                <input type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'change_password' %}'" value="Change Password">
+                                <input type="submit" class="btn btn-primary" value="Save Updates">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/tab-pane-->
+            </div>
+        </div>
+    </form>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#avatar_image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#avatar_user").change(function () {
+            readURL(this);
+        });
+        $("#remove_avatar").click(function() {
+            $('#avatar_image').attr('src', "http://ssl.gstatic.com/accounts/ui/avatar_2x.png");
+            $('#avatar_user').val("");
+        });
+    </script>
+{% endblock content_account %}

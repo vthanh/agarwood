@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load leaflet_tags %}
+
+{% block head %}
+    {% leaflet_css %}
+    {% leaflet_js %}
+{% endblock head %}
+
+{% block content %}
+    <div id="dispensary-map-left">
+        {% leaflet_map "main" callback="map_init" %}
+    </div>
+    <div id="dispensary-map-right">
+        {% for dispensary in dispensaries %}
+            <div>
+                <h2>Stretched Link in Card</h2>
+                <p>Add the .stretched-link class to a link inside the card, and it will make the whole card clickable
+                    (the card will act as a link):</p>
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text some example text. John Doe is an architect and
+                            engineer</p>
+                        <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div>
+            <h2>Stretched Link in Card</h2>
+            <p>Add the .stretched-link class to a link inside the card, and it will make the whole card clickable
+                (the card will act as a link):</p>
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and
+                        engineer</p>
+                    <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function map_init(map, options) {
+            // get point lat and lon
+            var lon = "{{ results.location.x }}";
+            var lat = "{{ results.location.y }}";
+            // zoom to point & add it to map
+            map.setView([lat, lon], 5);
+            L.marker([lat, lon]).addTo(map);
+        };
+    </script>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

@@ -1,0 +1,26 @@
+
+/** ADD YOUR AWESOME CODES HERE **/
+
+.pagination {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    float: right !important;
+}
+
+.pagination a, .pagination span.current {
+    text-decoration: none;
+    padding: 12px 17px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #f58320;
+}
+
+.pagination span.current {
+    margin-right: 0.2em;
+}
+
+.pagination a:hover {
+    background-color: #b0b435;
+}
