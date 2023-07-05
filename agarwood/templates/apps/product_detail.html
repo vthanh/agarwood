@@ -60,7 +60,7 @@
                     <ol class="carousel-indicators">
                         {% for element in product.imageelement_set.all %}
                         
-                            <li data-target="#carousel-example-1" data-slide-to="0" {% if forloop.first %} class="active" {% endif %}>
+                            <li data-target="#carousel-example-1" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active" {% endif %}>
                                 <img class="d-block w-100 img-fluid" src="/media/{{element.image}}" alt="" />
                             </li>
                         {% endfor %}
@@ -127,12 +127,12 @@
             <div class="col-lg-12">
                 <div class="title-all text-center">
                     <h1>Featured Products</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
                 </div>
                 <div class="featured-products-box owl-carousel owl-theme">
                     {% for product in products %}
                         <div class="item">
                             <div class="products-single fix">
+                                <a href="/products/{{product.id}}">
                                 <div class="box-img-hover">
                                     <img src="/media/{{product.cover_image}}" class="img-fluid" alt="Image">
                                     <div class="mask-icon">
@@ -144,6 +144,7 @@
                                         <a class="cart" href="/products/{{product.id}}">View Detail</a>
                                     </div>
                                 </div>
+                                </a>
                                 <div class="why-text">
                                     <h4><a href="/products/{{product.id}}">{{product.name}}</a></h4>
                                     <h5> $9.79</h5>

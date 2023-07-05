@@ -25,40 +25,41 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="banner-frame">
-                    <iframe style="height: 30em;width:100%;" src="https://www.youtube.com/embed/Trwn6dTByWA"></iframe>
+                    <iframe style="height: 30em;width:100%;" src="https://www.youtube.com/embed/i4aaNIa7xlQ"></iframe>
                 </div>
             </div>
             <div class="col-lg-6">
-                <h2 class="noo-sh-title-top">We are <span>Agarwood Co</span></h2>
-                <p>We were born and raised in a traditional village with a heritage of cultivating and producing agarwood, spanning many generations. Initially, we only knew how to produce raw materials and sell them to local traders without exporting. We were simple farmers often subjected to price pressure due to lack of information.
-
-                    One day, by chance, I had a friend who went to the Middle East to study and they told me about the immense potential market there. In the Middle East, fragrance culture and incense burning have deep roots in history. The ancient Persians have long known how to distill fragrant essential oils from flowers through steam, and women have their own distinctive scents hidden beneath their similar Muslim attire. Especially, people in the Middle East often burn agarwood during prayers to find inner peace, expressing reverence to the divine or infuse their homes with a warm, sacred atmosphere.
-                    
-                    Hence, the demand for high-quality agarwood in the Middle East is quite normal, as the cultural and religious foundations encourage its daily use. We suddenly had an idea and realized that there is a high demand for premium agarwood in many places around the world.
-                    
-                    After a while, we obtained certifications to export our products overseas. It was a tremendous effort and fortunate circumstance that we have access to top-quality agarwood in our region, which became the foundation of our success.
-                    
-                    With a favorable climate, suitable soil for agarwood trees, and skilled artisans, we are able to produce the finest quality products. We believe in delivering the best value to meet the needs of our customers and partners.</p>
-                <a class="btn hvr-hover" href="#">Read More</a>
+                <h2 class="noo-sh-title-top">{{about_us.title}}</span></h2>
+                <h2>{{news.title}}</h2>
+                <div>
+                    {{about_us.description|safe}}
+                </div>
+                
             </div>
         </div>
         <div class="row my-5">
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-3">
                 <div class="service-block-inner">
                     <h3>We are Trusted</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <p>Our responsibility towards customers also creates opportunities for us to gain reliable partners. It also serves as the foundation for Agarwood Co to expand the market and develop sustainably. </p>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-3">
                 <div class="service-block-inner">
-                    <h3>We are Professional</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <h3>Integrity</h3>
+                    <p>A dynamic, creative, and fair working environment empowers us with the energy to excel in our work. </p>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-3">
                 <div class="service-block-inner">
-                    <h3>We are Expert</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <h3>Collaboration</h3>
+                    <p>We aim to build strong cooperative relationships and alliances to achieve long-term success and sustainable development. </p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-block-inner">
+                    <h3>Excellence</h3>
+                    <p>We always strive to exceed the expectations of our partners. We work tirelessly to become a strong and resilient enterprise. </p>
                 </div>
             </div>
         </div>
@@ -73,18 +74,26 @@
                             <div class="team-content">
                                 <h3 class="title">{{element.name}}</h3> <span class="post">{{element.employee_position}}</span> </div>
                             <ul class="social">
+                                {% if element.facebook %}
                                 <li>
-                                    <a href="#" class="fab fa-facebook"></a>
+                                    <a href="{{element.facebook}}" class="fab fa-facebook"></a>
                                 </li>
+                                {% endif %}
+                                {% if element.instagram %}
                                 <li>
-                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="{{element.instagram}}" class="fab fa-instagram"></a>
                                 </li>
+                                {% endif %}
+                                {% if element.whatsapp %}
                                 <li>
-                                    <a href="#" class="fab fa-google-plus"></a>
+                                    <a href="tel:+84-{{element.whatsapp}}" class="fab fa-whatsapp"></a>
                                 </li>
+                                {% endif %}
+                                {% if element.tiktok %}
                                 <li>
-                                    <a href="#" class="fab fa-youtube"></a>
+                                    <a href="{{element.tiktok}}" class="fab fa-tiktok"></a>
                                 </li>
+                                {% endif %}
                             </ul>
                             <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
                         </div>
@@ -94,59 +103,6 @@
                         <hr class="my-0"> </div>
                 </div>
             {% endfor %}
-            
-            <div class="col-sm-6 col-lg-3">
-                <div class="hover-team">
-                    <div class="our-team"> <img src="images/img-3.jpg" alt="" />
-                        <div class="team-content">
-                            <h3 class="title">Steve Thomas</h3> <span class="post">Web Developer</span> </div>
-                        <ul class="social">
-                            <li>
-                                <a href="#" class="fab fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-twitter"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-google-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-youtube"></a>
-                            </li>
-                        </ul>
-                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
-                    </div>
-                    <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
-                    </div>
-                    <hr class="my-0"> </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="hover-team">
-                    <div class="our-team"> <img src="images/img-1.jpg" alt="" />
-                        <div class="team-content">
-                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
-                        <ul class="social">
-                            <li>
-                                <a href="#" class="fab fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-twitter"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-google-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="fab fa-youtube"></a>
-                            </li>
-                        </ul>
-                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
-                    </div>
-                    <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
-                    </div>
-                    <hr class="my-0"> </div>
-            </div>
         </div>
     </div>
 </div>
