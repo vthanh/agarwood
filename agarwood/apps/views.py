@@ -34,21 +34,35 @@ class HomeView(View):
         products = Products.objects.all().order_by('-id')[:3]
         news_list = News.objects.all().order_by('-id')[:3]
         product_caterory_list = ProductCategory.objects.filter(is_parent_category=True).order_by('name')
+        voucher_list = Voucher.objects.all().order_by('-id')
         context = {
             "products": products,
             "news_list": news_list,
             "product_caterory_list": product_caterory_list,
-            "page_name": MenuBar.HOME.value
+            "page_name": MenuBar.HOME.value,
+            "voucher_list": voucher_list
         }
         return render(request, './apps/home.html', context)
     
 
 class AboutView(View):
     def get(self, request, *args, **kwargs):
-        employee_list = EmployeeProfile.objects.all().order_by('name')
+        employee_obj_list = EmployeeProfile.objects.all().order_by('-id')
+        employee_list = []
+        i = 0
+        for employee_obj in employee_obj_list:
+            employee_list.append(employee_obj)
+            i = i + 1
+        if i < 4:
+            for employee_obj in employee_obj_list:
+                employee_list.append(employee_obj)
+            for employee_obj in employee_obj_list:
+                employee_list.append(employee_obj)
+        about_us = AboutUs.objects.last()
         context = {
             "employee_list": employee_list,
-            "page_name": MenuBar.ABOUT_US.value
+            "page_name": MenuBar.ABOUT_US.value,
+            'about_us': about_us
         }
         return render(request, './apps/about.html', context)
     

@@ -181,14 +181,14 @@
                         <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
                             {% for product_caterory in product_caterory_list %}
                                 {% if product_caterory.productcategory_set.count <= 0 %}
-                                    <a href="#" class="list-group-item list-group-item-action">Grocery<small class="text-muted">(150) </small></a>
+                                    <a href="/products?product_category={{product_caterory.name}}" class="list-group-item list-group-item-action">{{product_caterory.name}}<small class="text-muted">({{product_caterory.number_of_products}}) </small></a>
                                 {% else %}
                                     <div class="list-group-collapse sub-men">
-                                        <a class="list-group-item list-group-item-action" href="#sub-men-{{product_caterory.id}}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men-{{product_caterory.id}}">{{product_caterory.name}}<small class="text-muted">(100)</small></a>
+                                        <a class="list-group-item list-group-item-action" href="#sub-men-{{product_caterory.id}}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men-{{product_caterory.id}}">{{product_caterory.name}}<small class="text-muted">({{product_caterory.number_of_products}})</small></a>
                                         <div class="collapse show" id="sub-men-{{product_caterory.id}}" data-parent="#list-group-men">
                                             <div class="list-group">
                                                 {% for element in product_caterory.productcategory_set.all %}
-                                                    <a href="/products?product_category={{element.name}}" class="list-group-item list-group-item-action active">{{element.name}}<small class="text-muted">(50)</small></a>
+                                                    <a href="/products?product_category={{element.name}}" class="list-group-item list-group-item-action active">{{element.name}}<small class="text-muted">({{element.number_of_products}})</small></a>
                                                 {% endfor %}
                                             </div>
                                         </div>

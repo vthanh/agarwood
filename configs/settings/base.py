@@ -4,6 +4,7 @@ import environ
 import os
 
 ROOT_DIR = environ.Path(__file__) - 3
+
 APPS_DIR = ROOT_DIR.path('agarwood')
 
 env = environ.Env()
@@ -160,6 +161,8 @@ STATIC_URL = '/static/'
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
     str(APPS_DIR.path('static')),
+    "/var/www/static/",
+    "/static/"
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -180,6 +183,7 @@ PHOTOS_DIR_NAME = 'photos'
 
 #MEDIA_ROOT = '/home/vu/media'
 MEDIA_ROOT = str(APPS_DIR.path('media'))
+print("--MEDIA_ROOT: ", MEDIA_ROOT)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
 
@@ -305,5 +309,6 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath'
         ]),
+        'extraAllowedContent': 'iframe[*]',
     }
 }

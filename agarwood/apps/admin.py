@@ -225,3 +225,14 @@ class EmployeePositionAdmin(admin.ModelAdmin):
 class EmployeeProfileAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Voucher)
+class VoucherAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description')
+    search_fields = ['title']
+

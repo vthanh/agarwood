@@ -150,18 +150,28 @@ class ProductCategory(models.Model):
     name = models.CharField(max_length=255, blank=True)
     key_word = ArrayField(models.CharField(max_length=255, blank=True), size=8, )
     description = models.TextField()
-    image = models.ImageField(upload_to ='uploads/% Y/% m/% d/', blank=True, null=True)
+    image = models.ImageField(upload_to ='uploads/Y/m/d/', blank=True, null=True)
     is_parent_category =models.BooleanField(default=False) 
     parent_product_category = models.ForeignKey('self', on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.name
+    
+    @property
+    def number_of_products(self):
+        total = self.products_set.count()
+        if self.is_parent_category:
+            total = 0
+            child_product_category_list = ProductCategory.objects.filter(parent_product_category=self)
+            for child_product_category in child_product_category_list:
+                total += child_product_category.products_set.count()
+        return total
 
 
 class Products(ModelMeta, models.Model):
     name = models.CharField(max_length=200, blank=True)
     description = RichTextUploadingField(blank=False, null=False)
-    cover_image = models.ImageField(upload_to ='uploads/% Y/% m/% d/', blank=True, null=True)
+    cover_image = models.ImageField(upload_to ='uploads/Y/m/d/', blank=True, null=True)
     
     price = models.DecimalField(max_digits=30, decimal_places=20, blank=True)
     discount = models.DecimalField(max_digits=30, decimal_places=20, blank=True)
@@ -194,12 +204,12 @@ class Products(ModelMeta, models.Model):
     
 
 class ImageElement(models.Model):
-    image = models.FileField(upload_to ='uploads/% Y/% m/% d/')
+    image = models.FileField(upload_to ='uploads/Y/m/d/')
     product = models.ForeignKey(Products, on_delete=models.DO_NOTHING, blank=True, null=True)
     
 
 class ProductImages(models.Model):
-    image = models.ImageField(upload_to ='uploads/% Y/% m/% d/')
+    image = models.ImageField(upload_to ='uploads/Y/m/d/')
     product = models.ForeignKey(Products, on_delete=models.DO_NOTHING)
     
 
@@ -288,11 +298,38 @@ class EmployeeProfile(models.Model):
     email = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    picture = models.FileField(upload_to ='uploads/% Y/% m/% d/')
+    picture = models.FileField(upload_to ='uploads/')
+    facebook = models.CharField(max_length=255, null=True)
+    instagram = models.CharField(max_length=255, null=True)
+    whatsapp = models.CharField(max_length=255, null=True)
+    tiktok = models.CharField(max_length=255, null=True)
     employee_position = models.ForeignKey(EmployeePosition, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+
+class Voucher(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    picture = models.FileField(upload_to ='uploads/')
+
+    def __str__(self):
+        return self.name
+
+
+
+class AboutUs(ModelMeta, models.Model):
+    title = models.CharField(max_length=200, blank=True)
+    description = RichTextUploadingField(blank=False, null=False)
+    
+    _metadata = {
+        'title': 'name',
+        'description': 'description',
+    }
+        
+    def __str__(self):
+        return self.title
 
 
 
